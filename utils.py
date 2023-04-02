@@ -1,6 +1,13 @@
 from google.cloud import storage
 import os
 
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+import pandas as pd
+import numpy as np
+
+
 def initialize_bucket(credentials_path, bucket_name, create_bucket=False):
     '''
     function to access the data stored in a Google Storage bucket
@@ -24,3 +31,26 @@ def initialize_bucket(credentials_path, bucket_name, create_bucket=False):
         bucket.create()
 
     return client, bucket
+
+
+def plot_importance(data, feature, title=None ,rows=10):
+    '''
+    INPUT:
+    data - dataframe based on which the plot will be done
+    feature - feature to plot
+    title - plot title, default=None
+    rows - number of rows to show
+    '''
+    corr_abs = data.iloc[:rows]
+    fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(5,7), dpi=200)#, sharey=True)
+    gs = fig.add_gridspec(1, 3)
+
+    sns.heatmap(corr_abs, annot=True, cmap='magma_r', cbar=False,ax=ax[0])
+    sns.barplot(x=feature, y=corr_abs.index, data=corr_abs, palette="magma")
+
+    ax[0].axes.get_xaxis().set_visible(False)
+    ax[1].axes.get_xaxis().set_visible(False)
+    ax[1].axes.get_yaxis().set_visible(False)
+
+    fig.suptitle(title, fontsize=20)
+    sns.despine(bottom=True)
