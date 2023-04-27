@@ -1,0 +1,6 @@
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+df_dists_2.csv
+df_dists.csv
+*.parquet
+*.sqlite
