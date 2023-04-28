@@ -4,3 +4,4 @@ df_dists_2.csv
 df_dists.csv
 *.parquet
 *.sqlite
+data/**
