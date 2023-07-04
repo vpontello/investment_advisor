@@ -1,16 +1,23 @@
 # Investment Advisor
 
 ## Backlog
+### Technical adjustments
 * finish documentation
 * split ingestion code into a script
+* split historical data ingestion into a script
 * generate requirements.txt
 * create EDA notebook
 * split the training pipeline into a script
+
+### Results
+* make an assessment of the model results and show which model is the best.
+
+### Write-up or Application
 * add a simulation of the top 10 companies based on the actual data
 * generate predicions with the data from last year and compare with the actual best results
 * compare with the list of the biggest companies from last year
-* implement a backtest simulating the last 10 years using this strategy and just using the great 10.
-* implement SHAP values.
+* implement a backtest simulating the last 10 years using this strategy and just using the great 10 companies or greatest 10 dy.
+* implement SHAP values calculation and plot.
 * create possible developments to the project
     * deep dive into the feature selection
     * test more algorithms 
