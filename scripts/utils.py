@@ -33,7 +33,7 @@ def initialize_bucket(credentials_path, bucket_name, create_bucket=False):
     return client, bucket
 
 
-def plot_importance(data, feature, title=None ,rows=10):
+def plot_importance(data, feature, title=None ,rows=15):
     '''
     INPUT:
     data - dataframe based on which the plot will be done
@@ -42,7 +42,7 @@ def plot_importance(data, feature, title=None ,rows=10):
     rows - number of rows to show
     '''
     corr_abs = data.iloc[:rows]
-    fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(5,7), dpi=200)#, sharey=True)
+    fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(5,10), dpi=200)#, sharey=True)
     gs = fig.add_gridspec(1, 3)
 
     sns.heatmap(corr_abs, annot=True, cmap='magma_r', cbar=False,ax=ax[0])
