@@ -1,29 +1,5 @@
 # Investment Advisor
 
-## Backlog
-### Technical adjustments
-* finish documentation
-* split ingestion code into a script
-* split historical data ingestion into a script
-* generate requirements.txt
-* create EDA notebook
-* split the training pipeline into a script
-
-### Results
-* make an assessment of the model results and show which model is the best.
-
-### Write-up or Application
-* add a simulation of the top 10 companies based on the actual data
-* generate predicions with the data from last year and compare with the actual best results
-* compare with the list of the biggest companies from last year
-* implement a backtest simulating the last 10 years using this strategy and just using the great 10 companies or greatest 10 dy.
-* implement SHAP values calculation and plot.
-* create possible developments to the project
-    * deep dive into the feature selection
-    * test more algorithms 
-* write the blog post
-
-
 ## Description
 
 This project utilizes stock data from the Brazilian market and macroeconomic data to predict the stock with higher probability of getting the best dividend yield. Dividend yield is a financial ratio that shows the percentage return an investor can expect from a company's dividend payments relative to its stock price.
@@ -49,7 +25,7 @@ To use this project, follow these steps:
 
 1. Clone the repository: `git clone https://github.com/your-username/project-name.git`
 2. Navigate to the project directory: `cd project-name`
-3. Install the required dependencies: `pip install -r requirements.txt`
+3. Navigate through the notebooks in the folder `notebooks`
 
 ## Usage
 
@@ -83,7 +59,7 @@ The methodology for predicting the best dividend yield involves [describe the ap
 4. **Model evaluation:**
 
     For the model evaluation the following metrics were used:
-        **R2, MSE, explained_variance_score,** and **MAPE** 
+    **R2, MSE, explained_variance_score,** and **MAPE** 
 
     Which are valuable metrics for evaluating the model's performance in predicting the best dividend yield.
 
