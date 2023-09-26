@@ -1,5 +1,9 @@
 # Investment Advisor
 
+## Blogpost
+
+To understand better the motivation and the project as a whole, pleas check the [blogbost](https://medium.com/@ing.victorpontello/unleashing-ais-power-transforming-investments-with-data-and-analytics-6a06730ed779) with all the findings and important information about the project.
+
 ## Description
 
 This project utilizes stock data from the Brazilian market and macroeconomic data to predict the stock with higher probability of getting the best dividend yield. Dividend yield is a financial ratio that shows the percentage return an investor can expect from a company's dividend payments relative to its stock price.
@@ -16,45 +20,42 @@ Predicting stocks that generate the best dividend yield is a complex task that r
 - [Methodology](#methodology)
 - [Results](#results)
 - [Future Work](#future-work)
-- [Contributing](#contributing)
 - [License](#license)
 
 ## Installation
 
 To use this project, follow these steps:
 
-1. Clone the repository: `git clone https://github.com/your-username/project-name.git`
-2. Navigate to the project directory: `cd project-name`
-3. Navigate through the notebooks in the folder `notebooks`
+1. Clone the repository: `git clone https://github.com/your-username/project-name.git`.
+2. Make sure to have all the packages from the `requirements.txt` installed.
+3. Navigate to the project directory: `cd project-name`.
+4. Navigate through the notebooks in the folder `notebooks`.
+
 
 ## Usage
 
-1. Make sure you have installed all the dependencies (see Installation section).
-2. Obtain the necessary stock data and macroeconomic data from the specified sources (see Data Sources section).
-3. Place the data files in the appropriate directories within the project.
-4. Run the main script: `python main.py`
-5. Follow the prompts and input the required information when prompted.
-6. The script will generate the predicted dividend yields based on the provided data.
+1. Run notebook `00_data_eng.ipynb` to extract transform and load the raw data.
+2. Run notebook `01_data_prep.ipynb` to generate the base datasets.
+3. Run notebook `02_ml_pipeline.ipynb` to create the ML pipeline and train the models.
+4. Run notebook `03_data_analysis.ipynb` to analyse the results.
 
 ## Data Sources
 
-This project utilizes the following data sources:
+The data used in this project is stored in a GCP Clud Sorage bucket called `storage barsianize`.
+This bucket is enabled for reading purposes.
 
-- Stock data: Data for the Brazilian market can be obtained from [source_name].
-- Macroeconomic data: [Description of the source and how to obtain the data]
-
-Please ensure that you have the necessary permissions and licenses to use the data from these sources.
+All the extraction, transformation and loading of the data is performed and documented in the `00_data_eng.ipynb` notebook.
 
 ## Methodology
 
-The methodology for predicting the best dividend yield involves [describe the approach or algorithm used]. Here are the main steps:
+The methodology for predicting the best dividend yield involves both `LightGBM` and `XGBoost` regressors. Here are the main steps:
 
-1. **Data preprocessing:** [Describe how the data is prepared for analysis]
+1. **Data preprocessing:** After gathering all raw data, some feature engineering is performed, and the base dataset is created.
 
-2. **Feature selection:** [Explain the criteria used for selecting relevant features]
+2. **Feature selection:** The feature selection processes goes along through 3 steps. firstly the XGBoost model and the LightGBM model are trained and the feature importance calculated. After that, another LightGBM model is trained with the most important features from both. After that the feature importance is calculated again and the most important are selected. All the models are taken into account by making recommendations. The performance of each of them is the definitive factor to choose the model
 
 3. **Model training:**
- [Describe the model used for prediction and how it is trained]
+ In the whole process a 5-Fold-CV is performed and is based on the results, that the model is evaluated. All the training process is performed inside a pipeline, to avoid both data leakege and to guarantee, for example that the output is linked to the right preprocessing technique, such as Standardization or Normalization. The hyperparameter tunning is perrformed in a series of grid seaches, to assure that the best configuration is used.
 
 4. **Model evaluation:**
 
@@ -72,27 +73,19 @@ The methodology for predicting the best dividend yield involves [describe the ap
 
 ## Results
 
-The results of the prediction model are [describe the outcomes, such as accuracy, performance metrics, or any other relevant information]. 
+The results of the prediction model are:
+ * `Best Parameters`: "reg__learning_rate": 0.1, "reg__n_estimators": 500, reg__reg_alpha": 0.1, "reg__reg_lambda": 0.01, "reg__learning_rate": 0.5, "reg__max_depth": 5, "reg__n_estimators": 1000, "reg__reg_alpha": 0.1, "reg__reg_lambda": 0.01
+ * `Performance`: 
+    * `Cross Validation Scores`: 
+        * `test_r2`: [0.9026566281152357, 0.9551451566422728, 0.9219706170152273, 0.8742180629048635, 0.9275396568707293], 
+        * `test_mse`: [0.0002454358206710687, 0.00012158997391454887, 0.00020362955465438526, 0.000337151021024389, 0.00021951336658258087], 
+        * `test_xve`: [0.9026619283913273, 0.955149523900871, 0.9219706230473486, 0.8742180890863059, 0.9275502032567448], 
+        * `test_MAPE`: [4152855564939.0933, 2877504178625.054, 2852303507918.8237, 4493613707946.239, 2811455750330.8335]. 
 
 ## Future Work
 
-There are several areas of improvement and future work for this project, including:
-
-- [List potential enhancements or additions to the project]
-- [Suggest ways to expand the scope or incorporate additional features]
-
-Contributions from the open-source community are welcome to further improve the project.
-
-## Contributing
-
-If you want to contribute to this project, follow the steps below:
-
-1. Fork the repository.
-2. Create a new branch: `git checkout -b feature/your-feature`
-3. Make your changes and commit them: `git commit -m 'Add your feature'`
-4. Push to the branch: `git push origin feature/your-feature`
-5. Submit a pull request.
+For further develop the project, I foresee an automation to collect the daily data from the source, minimizing the necessity of interpolation between the days, what is big source of inefficiency of the model. Furthermore, more possibilities related to feature engineering can be explored, specially based on the finance literature.
 
 ## License
 
-[Specify the license under which the project is released. For example: MIT License, Apache License, etc.]
+MIT License
