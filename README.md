@@ -2,7 +2,7 @@
 
 ## Blogpost
 
-To understand better the motivation and the project as a whole, pleas check the [blogbost](https://medium.com/@ing.victorpontello/unleashing-ais-power-transforming-investments-with-data-and-analytics-6a06730ed779) with all the findings and important information about the project.
+To understand better the motivation and the project as a whole, pleas check the [blogbost](https://medium.com/@ing.victorpontello/unleashing-ais-power-transforming-investments-with-advanced-analytics-2ae5c14d93fd) with all the findings and important information about the project.
 
 ## Description
 
