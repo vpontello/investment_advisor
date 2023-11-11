@@ -26,7 +26,7 @@ Predicting stocks that generate the best dividend yield is a complex task that r
 
 To use this project, follow these steps:
 
-1. Clone the repository: `git clone https://github.com/your-username/project-name.git`.
+1. Clone the repository: `git clone https://github.com/vpontello/investment_advisor`.
 2. Make sure to have all the packages from the `requirements.txt` installed.
 3. Navigate to the project directory: `cd project-name`.
 4. Navigate through the notebooks in the folder `notebooks`.
